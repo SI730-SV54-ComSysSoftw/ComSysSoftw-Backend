@@ -1,6 +1,7 @@
+using ComSysSoftw_Backend.Infraestructure;
+using ComSysSoftw_Backend.Domain;
 using Microsoft.EntityFrameworkCore;
-using PracticaApp.Models;
-using System.Text.Json.Serialization;
+using Infraestructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,18 +12,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IUserInfraestructure, UserInfraestructure>();
+builder.Services.AddScoped<IUserDomain, UserDomain>();
+
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
-builder.Services.AddDbContext<PracticaContext>(options =>
+builder.Services.AddDbContext<VetDbContext>(options =>
 {
     options.UseMySql(builder.Configuration.GetConnectionString("PracticaDB"), serverVersion).LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors();
 });
 
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(options =>
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
-);
 
 var app = builder.Build();
 
