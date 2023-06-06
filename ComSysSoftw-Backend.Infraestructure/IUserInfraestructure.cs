@@ -10,9 +10,9 @@ namespace ComSysSoftw_Backend.Infraestructure
     public interface IUserInfraestructure
     {
         Task<List<User>> GetAll();
-        Task<User> Create(User user);
-        Task<User?> GetById(int id);
-        Task<User?> Update(int id, User user);
+        Task<bool> Create(User user);
+        Task<User> GetById(int id);
+        Task<bool> Update(int id, User user);
         Task<bool> Delete(int id);
     }
 }

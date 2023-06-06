@@ -2,6 +2,7 @@ using ComSysSoftw_Backend.Infraestructure;
 using ComSysSoftw_Backend.Domain;
 using Microsoft.EntityFrameworkCore;
 using Infraestructure.Context;
+using ComSysSoftw_Backend.API.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,16 +16,37 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserInfraestructure, UserInfraestructure>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
 
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
-builder.Services.AddDbContext<VetDbContext>(options =>
-{
-    options.UseMySql(builder.Configuration.GetConnectionString("PracticaDB"), serverVersion).LogTo(Console.WriteLine, LogLevel.Information)
-                .EnableSensitiveDataLogging()
-                .EnableDetailedErrors();
-});
+//Conexion a sql
+
+var connectionString = builder.Configuration.GetConnectionString("VetDB");
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+
+builder.Services.AddAutoMapper(
+    typeof(ModelToResponse),
+    typeof(InputToModel));
+
+builder.Services.AddDbContext<VetDbContext>(
+    dbContextOptions =>
+    {
+        dbContextOptions.UseMySql(connectionString,
+            ServerVersion.AutoDetect(connectionString),
+            options => options.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null)
+        );
+    });
+
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+using (var context = scope.ServiceProvider.GetService<VetDbContext>())
+{
+    context.Database.EnsureCreated();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

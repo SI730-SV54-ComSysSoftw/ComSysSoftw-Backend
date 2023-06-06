@@ -12,20 +12,19 @@ namespace ComSysSoftw_Backend.Domain.Test
             // Arrange
             User user = new User()
             {
-                Id = 1,
+                
                 name = "Juan",
-                Description = "Dueño de 1 perro",
-                Pets = new List<Pet> { new Pet() { age = "1", name = "Pepe" } }
+               
             };
             var mockUserInfraestructure = new Mock<IUserInfraestructure>();
-            mockUserInfraestructure.Setup(t => t.Create(user)).ReturnsAsync(user);
+            mockUserInfraestructure.Setup(t => t.Create(user)).ReturnsAsync(true);
             UserDomain userDomain = new UserDomain(mockUserInfraestructure.Object);
 
             // Act
-            var returnValue = await userDomain.Save(user);
+            var returnValue = userDomain.Create(user);
 
             // Assert
-            Assert.Equal(1, returnValue.Id);
+            Assert.True(returnValue.Result);
         }
     }
 }

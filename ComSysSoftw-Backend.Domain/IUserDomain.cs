@@ -9,10 +9,10 @@ namespace ComSysSoftw_Backend.Domain
 {
     public interface IUserDomain
     {
-        Task<User?> Save(User user);
-        Task<User?> Update(int id, User user);
+        Task<bool> Create(User input);
+        Task<bool> Update(int id, User user);
         Task<bool> Delete(int id);
-        Task<User?> GetUser(int id);
-        Task<List<User>> GetUsers();
+        //Task<User?> GetUser(int id);
+        //Task<List<User>> GetUsers();
     }
 }

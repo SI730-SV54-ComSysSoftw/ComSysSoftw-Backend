@@ -1,7 +1,11 @@
-﻿using ComSysSoftw_Backend.Domain;
+﻿using AutoMapper;
+using ComSysSoftw_Backend.API.Input;
+using ComSysSoftw_Backend.API.Response;
+using ComSysSoftw_Backend.Domain;
+using ComSysSoftw_Backend.Infraestructure;
 using Infraestructure.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ComSysSoftw_Backend.API.Controllers
 {
@@ -9,65 +13,76 @@ namespace ComSysSoftw_Backend.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserDomain _userDomain;
+        private  IUserDomain _userDomain;
+        private IUserInfraestructure _userInfraestructure;
+        private IMapper _mapper;
 
-        public UserController (IUserDomain userDomain)
+        public UserController (IUserDomain userDomain, IUserInfraestructure userInfraestructure, IMapper mapper)
         {
             _userDomain = userDomain;
+            _userInfraestructure = userInfraestructure;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<List<UserResponse>> Get()
         {
-            return Ok(await _userDomain.GetUsers());
+            var result=await _userInfraestructure.GetAll();
+            var list=_mapper.Map<List<User>,List<UserResponse>>(result);
+            return list;
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<UserResponse> GetById(int id)
         {
-            var userFound = await _userDomain.GetUser(id);
-            if (userFound == null)
-                return NotFound("Usuario no encontrado");
-            return Ok(userFound);
+            var userFound = await _userInfraestructure.GetById(id);
+            var result = _mapper.Map<User,UserResponse>(userFound);
+            
+            return result;
+            
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(User user)
+        public async Task Post([FromBody] UserInput input)
         {
-            try
+            if (ModelState.IsValid)
             {
-                await _userDomain.Save(user);
-                return CreatedAtAction(nameof(Get), new {id = user.Id}, user);
+                var user=_mapper.Map<UserInput,User>(input);
+                await _userDomain.Create(user);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                StatusCode(400);
             }
-         
+
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, User user)
+        public async Task Put (int id, [FromBody] UserInput input)
         {
-            if (id != user.Id) return BadRequest();
+            if (ModelState.IsValid)
+            {
+                var user = _mapper.Map<UserInput, User>(input);
+            
 
-            var userFound = await _userDomain.GetUser(id);
-            if (userFound == null)
-                return NotFound("Usuario no encontrado");
+                await _userDomain.Update(id, user);
 
-            await _userDomain.Update(id, user);
-            return NoContent();
+            }
+            else
+            { 
+
+                StatusCode(400);
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task Update([FromBody] int id)
         {
-            var userFound = await _userDomain.GetUser(id);
-            if (userFound == null)
-                return NotFound("Usuario no encontrado");
+            
 
             await _userDomain.Delete(id);
-            return NoContent();
+            
+           
         }
     }
 }

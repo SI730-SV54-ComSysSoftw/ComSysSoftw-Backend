@@ -10,14 +10,14 @@ namespace ComSysSoftw_Backend.Domain
 {
     public class UserDomain : IUserDomain
     {
-        private readonly IUserInfraestructure _userInfraestructure;
+        private  IUserInfraestructure _userInfraestructure;
 
         public UserDomain(IUserInfraestructure userInfraestructure)
         {
             _userInfraestructure = userInfraestructure;
         }
 
-        public async Task<User?> GetUser(int id)
+        /*public async Task<User?> GetUser(int id)
         {
             return await _userInfraestructure.GetById(id);
         }
@@ -25,11 +25,13 @@ namespace ComSysSoftw_Backend.Domain
         public async Task<List<User>> GetUsers()
         {
             return await _userInfraestructure.GetAll();
-        }
+        }*/
 
-        public async Task<User?> Save(User user)
+        public async Task<bool> Create(User input)
         {
-            return await _userInfraestructure.Create(user);
+            if (input.name.Length < 3) throw new Exception("less than 3 char");
+            if (input.name.Length > 10) throw new Exception("more than 10 char");
+            return await _userInfraestructure.Create(input);
         }
 
         public async Task<bool> Delete(int id)
@@ -37,7 +39,7 @@ namespace ComSysSoftw_Backend.Domain
             return await _userInfraestructure.Delete(id);
         }
 
-        public async Task<User?> Update(int id, User user)
+        public async Task<bool> Update(int id, User user)
         {
             return await _userInfraestructure.Update(id, user);
         }

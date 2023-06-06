@@ -1,0 +1,16 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ComSysSoftw_Backend.API.Input;
+
+public class UserInput
+{
+    [Required]
+    [MaxLength(30)]
+    [MinLength(1)]
+
+    public string name { get; set; }
+
+    public string email { get; set; }
+
+    public int age { get; set; }
+}

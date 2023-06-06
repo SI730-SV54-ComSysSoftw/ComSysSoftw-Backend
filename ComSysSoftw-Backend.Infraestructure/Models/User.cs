@@ -11,8 +11,12 @@ public class User
     public int Id { get; set; }
     public string name { get; set; }
 
-    public string Description { get; set; }
+    public string email { get; set; }
 
-    public List<Pet>Pets { get; set; } //una usuario puede tener varias mascotas
+    public int age { get; set; }
+
+    public bool IsActive { get; set; }
+
+    //una usuario puede tener varias mascotas
 }
 

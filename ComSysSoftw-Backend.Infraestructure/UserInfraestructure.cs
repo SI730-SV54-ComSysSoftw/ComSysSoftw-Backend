@@ -1,58 +1,64 @@
 ﻿using Infraestructure.Context;
 using Infraestructure.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
+namespace ComSysSoftw_Backend.Infraestructure;
 
-namespace ComSysSoftw_Backend.Infraestructure
+public class UserInfraestructure : IUserInfraestructure
 {
-    public class UserInfraestructure : IUserInfraestructure
+    private readonly VetDbContext _VetDBContext;
+    public UserInfraestructure(VetDbContext context)
     {
-        private readonly VetDbContext _context;
-        public UserInfraestructure(VetDbContext context)
-        {
-            _context = context;
-        }
+        _VetDBContext = context;
+    }
 
-        public async Task<List<User>> GetAll()
-        {
-            return await _context.Users.ToListAsync();
-        }
+    public async Task<List<User>> GetAll()
+    {
+        return await _VetDBContext.Users.ToListAsync();
+    }
 
-        public async Task<User?> GetById(int id)
-        {
-            var userFound = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            return userFound;
-        }
+    public async Task<User> GetById(int id)
+    {
+        return await _VetDBContext.Users.FirstOrDefaultAsync(user=>user.Id==id);
+    }
 
-        public async Task<User> Create(User user)
+    public async Task<bool> Create(User user)
+    {
+        try
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
+            user.IsActive = true;
+            _VetDBContext.Users.Add(user);
+            await _VetDBContext.SaveChangesAsync();
+            return true;
         }
+        catch (Exception exception) { return false; }
+    }
 
-        public async Task<bool> Delete(int id)
-        {
-            var userFound = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            if (userFound != null)
-            {
-                _context.Users.Remove(userFound);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            return false;
-        }
+    public async Task<bool> Delete(int id)
+    {
+            var userFound = _VetDBContext.Users.Find(id);
+            userFound.IsActive = false;
+        
+            _VetDBContext.Users.Update(userFound);
+            await _VetDBContext.SaveChangesAsync();
+            return true;
+        
+    }
 
-        public async Task<User?> Update(int id, User user)
+    public async Task<bool> Update(int id, User input)
+    {
+        try
         {
-            var userFound = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            if (userFound == null)
-                return null;
-            userFound.name = user.name;
-            userFound.Description = user.Description;
-            userFound.Pets = user.Pets;
-            await _context.SaveChangesAsync();
-            return userFound;
+            var userFound =  _VetDBContext.Users.Find(id);
+        
+            userFound.name = input.name;
+            userFound.email = input.email;
+            userFound.age = input.age;
+            _VetDBContext.Users.Update(userFound);
+            await _VetDBContext.SaveChangesAsync();
+            return true;
         }
+        catch (Exception exception) { return false; }
     }
 }
