@@ -3,6 +3,7 @@ using System;
 using Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComSysSoftw_Backend.Infraestructure.Migrations
 {
     [DbContext(typeof(VetDbContext))]
-    partial class VetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230607045327_addMeetingTable")]
+    partial class addMeetingTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
 
                     b.HasIndex("VeterinaryId");
 
-                    b.ToTable("Meetings");
+                    b.ToTable("Meeting");
                 });
 
             modelBuilder.Entity("Infraestructure.Models.Pet", b =>

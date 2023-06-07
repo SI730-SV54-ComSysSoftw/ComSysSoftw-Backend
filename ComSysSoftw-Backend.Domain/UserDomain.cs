@@ -17,11 +17,20 @@ namespace ComSysSoftw_Backend.Domain
             _userInfraestructure = userInfraestructure;
         }
 
-        /*public async Task<User?> GetUser(int id)
+        public async Task<User?> GetUser(int id)
         {
             return await _userInfraestructure.GetById(id);
         }
-
+        public async Task<User?> GetUserLogin(string name, string email)
+        {
+            var user = await _userInfraestructure.GetUserLogin(name, email);
+            if (user == null)
+            {
+                return null;
+            }
+            return user;
+        }
+        /*
         public async Task<List<User>> GetUsers()
         {
             return await _userInfraestructure.GetAll();

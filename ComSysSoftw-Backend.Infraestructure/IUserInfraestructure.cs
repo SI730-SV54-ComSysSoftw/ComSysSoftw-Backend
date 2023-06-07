@@ -14,5 +14,6 @@ namespace ComSysSoftw_Backend.Infraestructure
         Task<User> GetById(int id);
         Task<bool> Update(int id, User user);
         Task<bool> Delete(int id);
+        Task<User?> GetUserLogin(string name, string email);
     }
 }

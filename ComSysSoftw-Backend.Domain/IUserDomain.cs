@@ -12,7 +12,8 @@ namespace ComSysSoftw_Backend.Domain
         Task<bool> Create(User input);
         Task<bool> Update(int id, User user);
         Task<bool> Delete(int id);
-        //Task<User?> GetUser(int id);
+        Task<User?> GetUser(int id);
+        Task<User?> GetUserLogin(string name, string email);
         //Task<List<User>> GetUsers();
     }
 }

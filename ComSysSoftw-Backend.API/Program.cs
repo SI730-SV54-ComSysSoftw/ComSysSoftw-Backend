@@ -16,6 +16,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserInfraestructure, UserInfraestructure>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
 
+builder.Services.AddScoped<IVeterinaryInfraestructure, VeterinaryInfraestructure>();
+builder.Services.AddScoped<IVeterinaryDomain, VeterinaryDomain>();
+
+builder.Services.AddScoped<IPetInfraestructure, PetInfraestructure>();
+builder.Services.AddScoped<IPetDomain, PetDomain>();
+
+builder.Services.AddScoped<IMeetingInfraestructure, MeetingInfraestructure>();
+builder.Services.AddScoped<IMeetingDomain, MeetingDomain>();
+
 //Conexion a sql
 
 var connectionString = builder.Configuration.GetConnectionString("VetDB");

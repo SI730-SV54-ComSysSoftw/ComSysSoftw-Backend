@@ -1,4 +1,5 @@
-﻿using Infraestructure.Models;
+﻿using ComSysSoftw_Backend.Infraestructure.Models;
+using Infraestructure.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Context;
@@ -13,6 +14,10 @@ public class VetDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Veterinary> Veterinaries { get; set; }
+
+    public virtual DbSet<Pet> Pets { get; set; }
+
+    public virtual DbSet<Meeting> Meetings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComSysSoftw_Backend.Infraestructure.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,9 @@ public class Veterinary
     public string district { get; set; }
 
     public string phone_number{ get; set; }
+    public User User { get; set; }
+    public int UserId { get; set; }
 
-    public List<User> Users { get; set; }
+    public List<Meeting>? meetings { get; set; } = new List<Meeting>();
 }
 

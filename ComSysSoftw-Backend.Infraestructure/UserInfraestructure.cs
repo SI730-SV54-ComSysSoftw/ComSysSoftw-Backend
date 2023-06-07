@@ -18,6 +18,13 @@ public class UserInfraestructure : IUserInfraestructure
         return await _VetDBContext.Users.ToListAsync();
     }
 
+    public async Task<User?> GetUserLogin(string name, string email)
+    {
+         var user = await _VetDBContext.Users.FirstOrDefaultAsync(u => u.name == name && u.email == email);
+        if (user == null) return null;
+        return user;
+    }
+
     public async Task<User> GetById(int id)
     {
         return await _VetDBContext.Users.FirstOrDefaultAsync(user=>user.Id==id);

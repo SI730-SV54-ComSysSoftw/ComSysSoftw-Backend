@@ -8,4 +8,6 @@ public class UserResponse
     public string email { get; set; }
 
     public int age { get; set; }
+
+    public bool isVet { get; set; }
 }

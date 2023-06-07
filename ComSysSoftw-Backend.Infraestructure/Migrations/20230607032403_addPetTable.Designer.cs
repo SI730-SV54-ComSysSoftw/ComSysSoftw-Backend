@@ -3,6 +3,7 @@ using System;
 using Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,38 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComSysSoftw_Backend.Infraestructure.Migrations
 {
     [DbContext(typeof(VetDbContext))]
-    partial class VetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230607032403_addPetTable")]
+    partial class addPetTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("ComSysSoftw_Backend.Infraestructure.Models.Meeting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateToMeet")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VeterinaryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("VeterinaryId");
-
-                    b.ToTable("Meetings");
-                });
 
             modelBuilder.Entity("Infraestructure.Models.Pet", b =>
                 {
@@ -49,7 +28,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("age")
@@ -107,7 +86,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("district")
@@ -132,55 +111,25 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                     b.ToTable("Veterinaries", (string)null);
                 });
 
-            modelBuilder.Entity("ComSysSoftw_Backend.Infraestructure.Models.Meeting", b =>
-                {
-                    b.HasOne("Infraestructure.Models.User", null)
-                        .WithMany("meetings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infraestructure.Models.Veterinary", null)
-                        .WithMany("meetings")
-                        .HasForeignKey("VeterinaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Infraestructure.Models.Pet", b =>
                 {
-                    b.HasOne("Infraestructure.Models.User", "User")
+                    b.HasOne("Infraestructure.Models.User", null)
                         .WithMany("pets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Infraestructure.Models.Veterinary", b =>
                 {
-                    b.HasOne("Infraestructure.Models.User", "User")
+                    b.HasOne("Infraestructure.Models.User", null)
                         .WithMany("veterinaries")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Infraestructure.Models.User", b =>
                 {
-                    b.Navigation("meetings");
-
                     b.Navigation("pets");
 
                     b.Navigation("veterinaries");
-                });
-
-            modelBuilder.Entity("Infraestructure.Models.Veterinary", b =>
-                {
-                    b.Navigation("meetings");
                 });
 #pragma warning restore 612, 618
         }
