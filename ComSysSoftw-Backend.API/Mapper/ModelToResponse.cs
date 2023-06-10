@@ -13,5 +13,6 @@ public class ModelToResponse:Profile
         CreateMap<Veterinary, VeterinaryResponse>();
         CreateMap<Meeting, MeetingResponse>();
         CreateMap<Pet, PetResponse>();
+        CreateMap<Comment, CommentResponse>();
     }
 }
