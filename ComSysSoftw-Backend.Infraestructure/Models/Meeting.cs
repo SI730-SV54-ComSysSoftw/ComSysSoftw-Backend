@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ComSysSoftw_Backend.Infraestructure.Models
 {
-    public class Meeting
+    public class Meeting : BaseModel
     {
-        public int Id { get; set; }
         public DateTime DateToMeet { get; set; }
         public int UserId { get; set; }
         public int VeterinaryId { get; set; }

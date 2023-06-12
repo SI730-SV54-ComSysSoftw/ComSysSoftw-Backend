@@ -8,7 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ComSysSoftw-Backend.Infraestructure\ComSysSoftw-Backend.Infraestructure.csproj" />
+    <ProjectReference Include="..\ComSysSoftw-Backend.Shared\ComSysSoftw-Backend.Shared.csproj" />
   </ItemGroup>
 
 </Project>

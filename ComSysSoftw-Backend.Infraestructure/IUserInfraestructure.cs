@@ -11,9 +11,11 @@ namespace ComSysSoftw_Backend.Infraestructure
     {
         Task<List<User>> GetAll();
         Task<bool> Create(User user);
-        Task<User> GetById(int id);
+        Task<User?> GetById(int id);
         Task<bool> Update(int id, User user);
         Task<bool> Delete(int id);
         Task<User?> GetUserLogin(string name, string email);
+        Task<User> GetByUsername(string username);
+        Task<int> Signup(User user);
     }
 }

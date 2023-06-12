@@ -15,5 +15,8 @@ namespace ComSysSoftw_Backend.Domain
         Task<User?> GetUser(int id);
         Task<User?> GetUserLogin(string name, string email);
         //Task<List<User>> GetUsers();
+        Task<string> Login(User user);
+        Task<int> Signup(User user);
+        Task<User> GetByUsername(string username);
     }
 }

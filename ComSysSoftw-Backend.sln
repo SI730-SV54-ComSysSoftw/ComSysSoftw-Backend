@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComSysSoftw-Backend.Infraes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComSysSoftw-Backend.API", "ComSysSoftw-Backend.API\ComSysSoftw-Backend.API.csproj", "{7C6E0E9D-AC48-42F1-BB6B-40095DDB4A85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComSysSoftw-Backend.Domain.Test", "ComSysSoftw-Backend.Domain.Test\ComSysSoftw-Backend.Domain.Test.csproj", "{09F87617-A5A0-4FFB-AB9F-534B963B6D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComSysSoftw-Backend.Domain.Test", "ComSysSoftw-Backend.Domain.Test\ComSysSoftw-Backend.Domain.Test.csproj", "{09F87617-A5A0-4FFB-AB9F-534B963B6D74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComSysSoftw-Backend.Shared", "ComSysSoftw-Backend.Shared\ComSysSoftw-Backend.Shared.csproj", "{74DCFC76-FCDC-421B-8B7A-B8D3F9474146}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{09F87617-A5A0-4FFB-AB9F-534B963B6D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F87617-A5A0-4FFB-AB9F-534B963B6D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F87617-A5A0-4FFB-AB9F-534B963B6D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74DCFC76-FCDC-421B-8B7A-B8D3F9474146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74DCFC76-FCDC-421B-8B7A-B8D3F9474146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74DCFC76-FCDC-421B-8B7A-B8D3F9474146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74DCFC76-FCDC-421B-8B7A-B8D3F9474146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,9 +25,23 @@ public class UserInfraestructure : IUserInfraestructure
         return user;
     }
 
-    public async Task<User> GetById(int id)
+    public async Task<User> GetByUsername(string username)
     {
-        return await _VetDBContext.Users.FirstOrDefaultAsync(user=>user.Id==id);
+        return await _VetDBContext.Users.SingleAsync(u => u.UserName == username);
+    }
+
+    public async Task<int> Signup(User user)
+    {
+        user.DateCreated = DateTime.Now;
+        user.IsActive = true;
+        _VetDBContext.Users.Add(user);
+        await _VetDBContext.SaveChangesAsync();
+        return user.Id;
+    }
+
+    public async Task<User?> GetById(int id)
+    {
+        return await _VetDBContext.Users.FirstOrDefaultAsync(user => user.Id == id);
     }
 
     public async Task<bool> Create(User user)
