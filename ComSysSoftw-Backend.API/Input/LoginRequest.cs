@@ -6,11 +6,10 @@ namespace ComSysSoftw_Backend.API.Input
     public class LoginRequest
     {
         [Required]
-        [MinLength(4)]
-        public string Name { get; set; } = string.Empty;
+        public string Username { get; set; }
         [Required]
-        [MinLength(8)]
-        [EmailAddress]
-        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; }
+        [Required]
+        public string Roles { get; set; }
     }
 }

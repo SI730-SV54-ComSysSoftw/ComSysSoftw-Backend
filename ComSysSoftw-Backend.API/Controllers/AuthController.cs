@@ -37,16 +37,16 @@ namespace ComSysSoftw_Backend.API.Controllers
 
         }
 
-        [HttpPost("Login")]
-        public async Task<ActionResult> Login(LoginRequest request)
-        {
-            if (ModelState.IsValid)
-            {
-                var userFound = await _userDomain.GetUserLogin(request.Name, request.Email);
-                if (userFound == null) return NotFound("No se encontro el usuario");
-                return Ok(_mapper.Map<User, UserResponse>(userFound));
-            }
-            return StatusCode(400);
-        }
+        //[HttpPost("Login")]
+        //public async Task<ActionResult> Login(LoginRequest request)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var userFound = await _userDomain.GetUserLogin(request.Name, request.Email);
+        //        if (userFound == null) return NotFound("No se encontro el usuario");
+        //        return Ok(_mapper.Map<User, UserResponse>(userFound));
+        //    }
+        //    return StatusCode(400);
+        //}
     }
 }

@@ -4,6 +4,7 @@ using ComSysSoftw_Backend.API.Response;
 using ComSysSoftw_Backend.Domain;
 using ComSysSoftw_Backend.Infraestructure;
 using Infraestructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -24,6 +25,7 @@ namespace ComSysSoftw_Backend.API.Controllers
             _mapper = mapper;
         }
 
+        [Filter.Authorize("admin")]
         [HttpGet]
         public async Task<List<UserResponse>> Get()
         {
@@ -42,7 +44,7 @@ namespace ComSysSoftw_Backend.API.Controllers
             
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task Post([FromBody] UserInput input)
         {
             if (ModelState.IsValid)
@@ -76,13 +78,43 @@ namespace ComSysSoftw_Backend.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task Update([FromBody] int id)
+        public async Task Update(int id)
         {
-            
+             await _userDomain.Delete(id);          
+        }
 
-            await _userDomain.Delete(id);
-            
-           
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login(LoginRequest userInput)
+        {
+            try
+            {
+                var user = _mapper.Map<LoginRequest, User>(userInput);
+
+                var jwt = await _userDomain.Login(user);
+
+                return Ok(jwt);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al procesar");
+            }
+        }
+
+        // POST: api/User
+        [AllowAnonymous]
+        [HttpPost(Name = "Signup")]
+        public async Task<IActionResult> Signup(UserInput userInput)
+        {
+
+            var user = _mapper.Map<UserInput, User>(userInput);
+            var id = await _userDomain.Signup(user);
+
+            if (id > 0)
+                return Ok(id.ToString());
+            else
+                return BadRequest();
         }
     }
 }

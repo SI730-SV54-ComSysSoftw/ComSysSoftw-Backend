@@ -3,6 +3,8 @@ using ComSysSoftw_Backend.Domain;
 using Microsoft.EntityFrameworkCore;
 using Infraestructure.Context;
 using ComSysSoftw_Backend.API.Mapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ComSysSoftw_Backend.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +27,25 @@ builder.Services.AddScoped<IPetDomain, PetDomain>();
 builder.Services.AddScoped<IMeetingInfraestructure, MeetingInfraestructure>();
 builder.Services.AddScoped<IMeetingDomain, MeetingDomain>();
 
+builder.Services.AddScoped<IEncryptDomain, EncryptDomain>();
+builder.Services.AddScoped<ITokenDomain, TokenDomain>();
+
 //Conexion a sql
 
 var connectionString = builder.Configuration.GetConnectionString("VetDB");
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
 
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
@@ -63,6 +80,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
 
