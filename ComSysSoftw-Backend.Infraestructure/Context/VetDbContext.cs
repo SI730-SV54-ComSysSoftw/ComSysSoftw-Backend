@@ -18,6 +18,7 @@ public class VetDbContext : DbContext
     public virtual DbSet<Pet> Pets { get; set; }
 
     public virtual DbSet<Meeting> Meetings { get; set; }
+    public virtual DbSet<Comment> Comments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

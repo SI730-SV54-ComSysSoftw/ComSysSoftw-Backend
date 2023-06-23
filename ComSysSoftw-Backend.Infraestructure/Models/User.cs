@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 
 namespace Infraestructure.Models; 
-public class User
+public class User:BaseModel
 {
-    public int Id { get; set; }
+   
     public string name { get; set; }
 
     public string email { get; set; }
 
     public int age { get; set; }
 
-    public bool IsActive { get; set; }
+    
 
     public bool IsVet { get; set; } = false;
 
@@ -25,6 +25,7 @@ public class User
     public List<Pet>? pets { get; set; } = new List<Pet>();
 
     public List<Meeting>? meetings { get; set; } = new List<Meeting>();
+    public List<Comment>? comments { get; set; } = new List<Comment>();
 
     //una usuario puede tener varias mascotas
 }

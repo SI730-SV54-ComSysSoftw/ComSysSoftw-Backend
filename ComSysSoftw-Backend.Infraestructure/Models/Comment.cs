@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ComSysSoftw_Backend.Infraestructure.Models
 {
-    public class Meeting:BaseModel
+    public class Comment:BaseModel
     {
         
-        public DateTime DateToMeet { get; set; }
+        public string text { get; set; }
+        public string title { get; set; }
+        public DateTime DateToComment { get; set; }
         public int UserId { get; set; }
         public int VeterinaryId { get; set; }
     }
