@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComSysSoftw_Backend.Infraestructure.Migrations
 {
     [DbContext(typeof(VetDbContext))]
-    [Migration("20230623172620_addCommentTable")]
-    partial class addCommentTable
+    [Migration("20230623225207_clean_migration")]
+    partial class clean_migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,9 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("DateToComment")
                         .HasColumnType("datetime");
@@ -66,6 +69,9 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
+
                     b.Property<DateTime>("DateToMeet")
                         .HasColumnType("datetime");
 
@@ -90,11 +96,51 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                     b.ToTable("Meetings");
                 });
 
+            modelBuilder.Entity("ComSysSoftw_Backend.Infraestructure.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateToProduct")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("VeterinaryId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("Infraestructure.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime");
@@ -129,6 +175,9 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
+
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime");
 
@@ -137,6 +186,18 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
 
                     b.Property<bool>("IsVet")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Roles")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("age")
                         .HasMaxLength(60)
@@ -162,6 +223,9 @@ namespace ComSysSoftw_Backend.Infraestructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime");
