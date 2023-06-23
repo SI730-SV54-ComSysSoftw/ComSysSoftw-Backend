@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ComSysSoftw_Backend.Infraestructure
 {
-    internal class ProductInfraestructure : IProductInfraestructure
+    public class ProductInfraestructure : IProductInfraestructure
     {
         private readonly VetDbContext _VetDBContext;
         public ProductInfraestructure(VetDbContext context)

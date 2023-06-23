@@ -16,5 +16,6 @@ public class InputToModel:Profile
         CreateMap<MeetingInput, Meeting>();
         CreateMap<LoginRequest, User>();
         CreateMap<CommentInput, Comment>();
+        CreateMap<ProductInput, Product>();
     }
 }

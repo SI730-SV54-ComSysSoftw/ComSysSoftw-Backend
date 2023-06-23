@@ -10,7 +10,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Models
     {
         public string name { get; set; }
         public string description { get; set; }
-        public int amount { get; set; }
+        public float amount { get; set; }
         public DateTime DateToProduct { get; set; }
         public int VeterinaryId { get; set; }
     }
