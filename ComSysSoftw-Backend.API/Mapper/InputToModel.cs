@@ -15,5 +15,6 @@ public class InputToModel:Profile
         CreateMap<PetInput, Pet>();
         CreateMap<MeetingInput, Meeting>();
         CreateMap<LoginRequest, User>();
+        CreateMap<CommentInput, Comment>();
     }
 }

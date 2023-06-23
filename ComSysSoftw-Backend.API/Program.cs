@@ -27,6 +27,9 @@ builder.Services.AddScoped<IPetDomain, PetDomain>();
 builder.Services.AddScoped<IMeetingInfraestructure, MeetingInfraestructure>();
 builder.Services.AddScoped<IMeetingDomain, MeetingDomain>();
 
+builder.Services.AddScoped<ICommentInfraestructure, CommentInfraestructure>();
+builder.Services.AddScoped<ICommentDomain, CommentDomain>();
+
 //Conexion a sql
 
 var connectionString = builder.Configuration.GetConnectionString("VetDB");
