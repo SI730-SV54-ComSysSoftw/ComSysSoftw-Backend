@@ -24,7 +24,7 @@ public class VetDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd= *** ;Database=VetDB;", serverVersion);
+            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10628214;Pwd=ISd6XkqXWs;Database=sql10628214;", serverVersion);
         }
     }
 
