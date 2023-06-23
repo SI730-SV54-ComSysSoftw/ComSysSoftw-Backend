@@ -12,5 +12,6 @@ namespace ComSysSoftw_Backend.API.Input
         public string description { get; set; }
 
         public int UserId { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

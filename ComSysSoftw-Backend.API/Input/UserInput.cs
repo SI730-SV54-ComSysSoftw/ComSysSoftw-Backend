@@ -14,4 +14,5 @@ public class UserInput
     public string Username { get; set; }
     public string Password { get; set; }
     public string Roles { get; set; }
+    public string ImgUrl { get; set; }
 }

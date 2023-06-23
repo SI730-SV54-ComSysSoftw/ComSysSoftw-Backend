@@ -8,5 +8,6 @@
         public string district { get; set; }
 
         public string phone_number { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

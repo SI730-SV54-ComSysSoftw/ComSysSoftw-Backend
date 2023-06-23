@@ -13,5 +13,6 @@ namespace ComSysSoftw_Backend.API.Input
 
         public string phone_number { get; set; }
         public int UserId { get; set; }
+        public string ImgUrl { get; set; }
     }
 }
