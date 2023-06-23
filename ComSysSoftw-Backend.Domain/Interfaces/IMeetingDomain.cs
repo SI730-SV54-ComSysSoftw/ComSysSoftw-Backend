@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComSysSoftw_Backend.Infraestructure
+namespace ComSysSoftw_Backend.Domain.Interfaces
 {
-    public interface IMeetingInfraestructure
+    public interface IMeetingDomain
     {
         Task<bool> Meet(Meeting meet);
     }

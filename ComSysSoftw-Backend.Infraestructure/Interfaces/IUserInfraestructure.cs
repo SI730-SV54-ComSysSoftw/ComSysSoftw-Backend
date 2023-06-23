@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComSysSoftw_Backend.Infraestructure
+namespace ComSysSoftw_Backend.Infraestructure.Interfaces
 {
     public interface IUserInfraestructure
     {

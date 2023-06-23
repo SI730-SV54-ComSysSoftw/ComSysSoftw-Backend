@@ -1,4 +1,5 @@
-﻿using ComSysSoftw_Backend.Infraestructure;
+﻿using ComSysSoftw_Backend.Domain.Interfaces;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
 using ComSysSoftw_Backend.Infraestructure.Models;
 using Infraestructure.Models;
 using System;

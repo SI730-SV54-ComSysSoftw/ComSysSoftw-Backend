@@ -5,6 +5,8 @@ using Infraestructure.Context;
 using ComSysSoftw_Backend.API.Mapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ComSysSoftw_Backend.API.Middleware;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
+using ComSysSoftw_Backend.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,12 @@ builder.Services.AddScoped<IMeetingDomain, MeetingDomain>();
 
 builder.Services.AddScoped<IEncryptDomain, EncryptDomain>();
 builder.Services.AddScoped<ITokenDomain, TokenDomain>();
+
+builder.Services.AddScoped<ICommentInfraestructure, CommentInfraestructure>();
+builder.Services.AddScoped<ICommentDomain, CommentDomain>();
+
+builder.Services.AddScoped<IProductInfraestructure,ProductInfraestructure>();
+builder.Services.AddScoped<IProductDomain, ProductDomain>();
 
 //Conexion a sql
 

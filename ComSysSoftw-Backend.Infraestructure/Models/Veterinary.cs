@@ -14,5 +14,6 @@ public class Veterinary : BaseModel
     public User User { get; set; }
     public int UserId { get; set; }
     public List<Meeting>? meetings { get; set; } = new List<Meeting>();
+    public List<Comment>? comments{ get; set; } = new List<Comment>();
 }
 

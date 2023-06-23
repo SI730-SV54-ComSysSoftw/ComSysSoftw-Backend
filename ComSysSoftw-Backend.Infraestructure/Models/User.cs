@@ -19,5 +19,8 @@ public class User : BaseModel
     public List<Veterinary>? veterinaries { get; set; } = new List<Veterinary>();
     public List<Pet>? pets { get; set; } = new List<Pet>();
     public List<Meeting>? meetings { get; set; } = new List<Meeting>();
+    public List<Comment>? comments { get; set; } = new List<Comment>();
+
+    //una usuario puede tener varias mascotas
 }
 
