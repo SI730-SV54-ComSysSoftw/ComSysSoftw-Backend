@@ -1,4 +1,5 @@
-﻿using Infraestructure.Context;
+﻿using ComSysSoftw_Backend.Infraestructure.Interfaces;
+using Infraestructure.Context;
 using Infraestructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;

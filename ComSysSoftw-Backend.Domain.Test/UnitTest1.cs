@@ -1,4 +1,4 @@
-using ComSysSoftw_Backend.Infraestructure;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
 using Infraestructure.Models;
 using Moq;
 

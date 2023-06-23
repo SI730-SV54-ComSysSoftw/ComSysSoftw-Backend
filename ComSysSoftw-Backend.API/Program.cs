@@ -3,6 +3,8 @@ using ComSysSoftw_Backend.Domain;
 using Microsoft.EntityFrameworkCore;
 using Infraestructure.Context;
 using ComSysSoftw_Backend.API.Mapper;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
+using ComSysSoftw_Backend.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

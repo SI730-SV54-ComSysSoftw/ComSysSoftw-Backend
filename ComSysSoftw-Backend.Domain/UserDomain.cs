@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ComSysSoftw_Backend.Infraestructure;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
+using ComSysSoftw_Backend.Domain.Interfaces;
 
 namespace ComSysSoftw_Backend.Domain
 {

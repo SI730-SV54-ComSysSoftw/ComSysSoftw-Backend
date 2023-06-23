@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ComSysSoftw_Backend.API.Input;
-using ComSysSoftw_Backend.Domain;
-using ComSysSoftw_Backend.Infraestructure;
+using ComSysSoftw_Backend.Domain.Interfaces;
+using ComSysSoftw_Backend.Infraestructure.Interfaces;
 using ComSysSoftw_Backend.Infraestructure.Models;
 using Infraestructure.Models;
 using Microsoft.AspNetCore.Http;
