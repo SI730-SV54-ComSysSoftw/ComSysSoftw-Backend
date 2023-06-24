@@ -105,7 +105,7 @@ namespace ComSysSoftw_Backend.API.Controllers
 
         // POST: api/User
         [AllowAnonymous]
-        [HttpPost(Name = "Signup")]
+        [HttpPost("Signup")]
         public async Task<IActionResult> Signup(UserInput userInput)
         {
 
