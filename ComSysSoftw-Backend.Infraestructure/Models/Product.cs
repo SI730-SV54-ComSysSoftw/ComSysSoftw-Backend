@@ -13,5 +13,6 @@ namespace ComSysSoftw_Backend.Infraestructure.Models
         public float amount { get; set; }
         public DateTime DateToProduct { get; set; }
         public int VeterinaryId { get; set; }
+        public string ImgUrl { get; set; } = string.Empty;
     }
 }

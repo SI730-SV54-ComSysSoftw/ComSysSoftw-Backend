@@ -14,5 +14,6 @@ namespace Infraestructure.Models
         public string description { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public string ImgUrl { get; set; }= string.Empty;
     }
 }
