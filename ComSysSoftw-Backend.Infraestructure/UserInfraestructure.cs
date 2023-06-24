@@ -73,10 +73,15 @@ public class UserInfraestructure : IUserInfraestructure
         try
         {
             var userFound =  _VetDBContext.Users.Find(id);
-        
+            userFound.DateUpdated = DateTime.Now;
             userFound.name = input.name;
             userFound.email = input.email;
             userFound.age = input.age;
+            userFound.IsVet = input.IsVet;
+            userFound.UserName = input.UserName;
+            userFound.Password = input.Password;
+            userFound.Roles = input.Roles;
+            userFound.ImgUrl = input.ImgUrl;
             _VetDBContext.Users.Update(userFound);
             await _VetDBContext.SaveChangesAsync();
             return true;

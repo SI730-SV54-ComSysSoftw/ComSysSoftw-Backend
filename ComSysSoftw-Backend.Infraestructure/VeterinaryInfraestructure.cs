@@ -22,6 +22,7 @@ namespace ComSysSoftw_Backend.Infraestructure
         {
             try
             {
+                veterinary.DateCreated = DateTime.Now;
                 _VetDBContext.Veterinaries.Add(veterinary);
                 await _VetDBContext.SaveChangesAsync();
                 return true;
@@ -43,7 +44,7 @@ namespace ComSysSoftw_Backend.Infraestructure
             return await _VetDBContext.Veterinaries.ToListAsync();
         }
 
-        public async Task<Veterinary> GetById(int id)
+        public async Task<Veterinary?> GetById(int id)
         {
             return await _VetDBContext.Veterinaries.FirstOrDefaultAsync(vet => vet.Id == id);
         }
@@ -53,10 +54,12 @@ namespace ComSysSoftw_Backend.Infraestructure
             try
             {
                 var vetyFound = _VetDBContext.Veterinaries.Find(id);
-
+                vetyFound.DateUpdated = DateTime.Now;
                 vetyFound.name = vety.name;
                 vetyFound.phone_number = vety.phone_number;
                 vetyFound.district = vety.district;
+                vetyFound.UserId = vety.UserId;
+                vetyFound.ImgUrl= vety.ImgUrl;
                 _VetDBContext.Veterinaries.Update(vetyFound);
                 await _VetDBContext.SaveChangesAsync();
                 return true;

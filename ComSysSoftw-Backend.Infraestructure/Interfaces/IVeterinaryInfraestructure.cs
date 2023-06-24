@@ -11,7 +11,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Interfaces
     {
         Task<List<Veterinary>> GetAll();
         Task<bool> Create(Veterinary user);
-        Task<Veterinary> GetById(int id);
+        Task<Veterinary?> GetById(int id);
         Task<bool> Update(int id, Veterinary user);
         Task<bool> Delete(int id);
     }

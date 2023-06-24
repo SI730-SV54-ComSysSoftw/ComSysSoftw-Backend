@@ -51,7 +51,7 @@ namespace ComSysSoftw_Backend.Infraestructure
             return await _VetDBContext.Comments.Where(p => p.VeterinaryId == vetId).ToListAsync();
         }
 
-        public async  Task<Comment> GetById(int id)
+        public async  Task<Comment?> GetById(int id)
         {
             return await _VetDBContext.Comments.FirstOrDefaultAsync(p => p.Id == id);
         }

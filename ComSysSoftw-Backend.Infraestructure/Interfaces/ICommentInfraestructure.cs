@@ -13,7 +13,7 @@ namespace ComSysSoftw_Backend.Infraestructure.Interfaces
         Task<List<Comment>> GetAllByUser(int userId);
         Task<List<Comment>> GetAllByVet(int vetId);
         Task<bool> Create(Comment comment);
-        Task<Comment> GetById(int id);
+        Task<Comment?> GetById(int id);
         Task<bool> Update(int id, Comment comment);
         Task<bool> Delete(int id);
     }
