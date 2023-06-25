@@ -45,6 +45,16 @@ namespace ComSysSoftw_Backend.API.Controllers
             
         }
 
+        [HttpGet("Username/{username}")]
+        public async Task<UserResponse> GetByUsername(string username)
+        {
+            var userFound = await _userDomain.GetByUsername(username);
+            var result = _mapper.Map<User,UserResponse>(userFound);
+            
+            return result;
+            
+        }
+
         [HttpPost("create")]
         public async Task Post([FromBody] UserInput input)
         {
