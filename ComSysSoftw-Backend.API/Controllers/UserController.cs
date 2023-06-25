@@ -116,10 +116,10 @@ namespace ComSysSoftw_Backend.API.Controllers
         // POST: api/User
         [AllowAnonymous]
         [HttpPost("Signup")]
-        public async Task<IActionResult> Signup(UserInput userInput)
+        public async Task<IActionResult> Signup(RegisterRequest userInput)
         {
 
-            var user = _mapper.Map<UserInput, User>(userInput);
+            var user = _mapper.Map<RegisterRequest, User>(userInput);
             var id = await _userDomain.Signup(user);
 
             if (id > 0)

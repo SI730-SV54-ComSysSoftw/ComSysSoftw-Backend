@@ -79,7 +79,7 @@ public class UserInfraestructure : IUserInfraestructure
             userFound.age = input.age;
             userFound.IsVet = input.IsVet;
             userFound.UserName = input.UserName;
-            userFound.Password = input.Password;
+            //userFound.Password = input.Password;
             userFound.Roles = input.Roles;
             userFound.ImgUrl = input.ImgUrl;
             _VetDBContext.Users.Update(userFound);

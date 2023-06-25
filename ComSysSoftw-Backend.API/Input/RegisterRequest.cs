@@ -6,12 +6,15 @@ namespace ComSysSoftw_Backend.API.Input
     public class RegisterRequest
     {
         [Required]
-        public string UserName { get; set; } = string.Empty;
-        [Required]
-        [MinLength(8)]
-        [PasswordPropertyText]
-        public string Password { get; set; } = string.Empty;
-        [Required]
-        public string Roles { get; set; } = string.Empty;
+        [MaxLength(30)]
+        [MinLength(1)]
+        public string name { get; set; }
+        public string email { get; set; }
+        public int age { get; set; }
+        public bool isVet { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Roles { get; set; }
+        public string ImgUrl { get; set; }
     }
 }
