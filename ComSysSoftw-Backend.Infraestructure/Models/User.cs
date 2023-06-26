@@ -15,7 +15,7 @@ public class User : BaseModel
     public string name { get; set; }
     public string email { get; set; }
     public int age { get; set; }
-    public bool IsVet { get; set; } = false;
+    public bool IsVet { get; set; }
     public string ImgUrl { get; set; } = string.Empty;
     public List<Veterinary>? veterinaries { get; set; } = new List<Veterinary>();
     public List<Pet>? pets { get; set; } = new List<Pet>();

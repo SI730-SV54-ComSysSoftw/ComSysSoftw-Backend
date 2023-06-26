@@ -35,6 +35,14 @@ public class UserInfraestructure : IUserInfraestructure
     {
         user.DateCreated = DateTime.Now;
         user.IsActive = true;
+        if (user.IsVet == true)
+        {
+            user.IsVet = true;
+        }
+        else
+        {
+            user.IsVet = false;
+        }
         _VetDBContext.Users.Add(user);
         await _VetDBContext.SaveChangesAsync();
         return user.Id;
@@ -77,7 +85,7 @@ public class UserInfraestructure : IUserInfraestructure
             userFound.name = input.name;
             userFound.email = input.email;
             userFound.age = input.age;
-            userFound.IsVet = input.IsVet;
+           // userFound.IsVet = input.IsVet;
             userFound.UserName = input.UserName;
             //userFound.Password = input.Password;
             userFound.Roles = input.Roles;
