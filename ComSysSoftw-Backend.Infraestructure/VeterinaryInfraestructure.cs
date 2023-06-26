@@ -49,6 +49,11 @@ namespace ComSysSoftw_Backend.Infraestructure
             return await _VetDBContext.Veterinaries.FirstOrDefaultAsync(vet => vet.Id == id);
         }
 
+        public async Task<List<Veterinary>> GetByUserId(int id)
+        {
+            return await _VetDBContext.Veterinaries.Where(vet => vet.UserId == id).ToListAsync();
+        }
+
         public async Task<bool> Update(int id, Veterinary vety)
         {
             try
@@ -58,7 +63,7 @@ namespace ComSysSoftw_Backend.Infraestructure
                 vetyFound.name = vety.name;
                 vetyFound.phone_number = vety.phone_number;
                 vetyFound.district = vety.district;
-                vetyFound.UserId = vety.UserId;
+                //vetyFound.UserId = vety.UserId;
                 vetyFound.ImgUrl= vety.ImgUrl;
                 _VetDBContext.Veterinaries.Update(vetyFound);
                 await _VetDBContext.SaveChangesAsync();

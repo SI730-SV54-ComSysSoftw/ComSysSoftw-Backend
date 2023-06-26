@@ -44,6 +44,14 @@ namespace ComSysSoftw_Backend.API.Controllers
 
         }
 
+        [HttpGet("User/{id}")]
+        public async Task<List<VeterinaryResponse>> GetAllByUser(int id)
+        {
+            var result = await _vetInfra.GetByUserId(id);
+            var list = _mapper.Map<List<Veterinary>, List<VeterinaryResponse>>(result);
+            return list;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(VeterinaryInput request)
         {
